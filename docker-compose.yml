@@ -1,0 +1,56 @@
+version: "3.9"
+networks:
+  service-net:
+    driver: bridge
+services:
+  web:
+    build: ./nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./wwwroot:/var/www
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/config/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+    container_name: webnet
+    restart: always
+    networks:
+      - service-net
+  redis:
+    build: ./redis
+    ports:
+      - "6377:6379"
+    volumes:
+      - ./redis/data:/data
+    container_name: redis
+    restart: always
+    networks:
+      - service-net
+  php74:
+    build: ./php/7.4
+    ports:
+      - "9074:9000"
+    volumes:
+      - ./wwwroot:/var/www
+      - ./php/7.4/config/php.ini:/usr/local/etc/php/php.ini
+      - ./php/7.4/config/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/7.4/config/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./php/7.4/logs:/var/log/php
+    container_name: php74
+    networks:
+      - service-net
+  mysql80:
+    build: ./mysql/8.0
+    ports:
+      - "3380:3306"
+    restart: always
+    volumes:
+      - ./mysql/8.0/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "false"
+    container_name: mysql80
+    networks:
+      - service-net
+ 
