@@ -1,0 +1,7 @@
+.idea
+.vscode
+mysql/8.0/data/*
+nginx/logs/*
+php/7.4/logs/*
+reds/data/*
+wwwroot/*
