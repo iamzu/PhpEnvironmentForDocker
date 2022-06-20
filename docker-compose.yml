@@ -6,7 +6,7 @@ services:
   web:
     build: ./nginx
     ports:
-      - "8000:80"
+      - "80:80"
     volumes:
       - ./wwwroot:/var/www
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
@@ -37,6 +37,19 @@ services:
       - ./php/7.4/config/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./php/7.4/logs:/var/log/php
     container_name: php74
+    networks:
+      - service-net
+  php70:
+    build: ./php/7.0
+    ports:
+      - "9070:9000"
+    volumes:
+      - ./wwwroot:/var/www
+      - ./php/7.0/config/php.ini:/usr/local/etc/php/php.ini
+      - ./php/7.0/config/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/7.0/config/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./php/7.0/logs:/var/log/php
+    container_name: php70
     networks:
       - service-net
   mysql80:

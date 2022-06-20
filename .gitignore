@@ -2,7 +2,7 @@
 .vscode
 mysql/8.0/data/*
 nginx/logs/*
-nginx/conf.d/*
-php/7.4/logs/*
-reds/data/*
+nginx/config/conf.d/*
+php/7.4/logs/*s
+redis/data/*
 wwwroot/*
