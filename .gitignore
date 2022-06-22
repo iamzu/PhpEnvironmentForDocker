@@ -6,3 +6,4 @@ nginx/config/conf.d/*
 php/7.4/logs/*s
 redis/data/*
 wwwroot/*
+docker-composer-php-environment.code-workspace
