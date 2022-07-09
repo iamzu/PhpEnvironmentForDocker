@@ -5,9 +5,9 @@ ARG TZ=Asia/Shanghai
 ENV TZ ${TZ}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY config/php.ini /usr/local/etc/php/php.ini
-COPY config/www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY config/php-fpm.conf /usr/local/etc/php-fpm.conf
+# COPY ../../work/php74/config/php.ini /usr/local/etc/php/php.ini
+# COPY ../../work/php74/config/www.conf /usr/local/etc/php-fpm.d/www.conf
+# COPY ../../work/php74/config/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 COPY resources /home/resources
 # 替换源
@@ -16,10 +16,10 @@ RUN sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-sec
 
 
 RUN apt-get update && apt-get install -y \
-		libfreetype6-dev \
-		libjpeg62-turbo-dev \
-		libpng-dev \
-		git \
+	libfreetype6-dev \
+	libjpeg62-turbo-dev \
+	libpng-dev \
+	git \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd pdo pdo_mysql bcmath
 

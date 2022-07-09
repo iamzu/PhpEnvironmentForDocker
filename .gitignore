@@ -1,9 +1,9 @@
 .idea
 .vscode
-mysql/8.0/data/*
-nginx/logs/*
-nginx/config/conf.d/*
-php/7.4/logs/*s
-redis/data/*
+work/mysql80/data/*
+work/nginx/logs/*
+work/nginx/config/conf.d/*
+work/php74/logs/*s
+work/redis/data/*
 wwwroot/*
 docker-composer-php-environment.code-workspace

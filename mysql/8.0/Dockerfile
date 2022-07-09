@@ -5,5 +5,5 @@ ARG TZ=Asia/Shanghai
 ENV TZ ${TZ}
 
 
-COPY config/mysql.cnf /etc/mysql/conf.d/mysql.cnf
+COPY config/my.cnf/mysql.cnf /etc/mysql/conf.d/mysql.cnf
 
