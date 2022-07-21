@@ -1,6 +1,7 @@
 .idea
 .vscode
 work/mysql80/data/*
+work/mysql56/data/*
 work/nginx/logs/*
 work/nginx/config/conf.d/*
 work/php74/logs/*s

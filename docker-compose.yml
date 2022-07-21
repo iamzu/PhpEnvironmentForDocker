@@ -53,6 +53,18 @@ services:
     container_name: php70
     networks:
       - service-net
+  php54:
+    build: ./php/5.4
+    ports:
+      - "9054:9000"
+    volumes:
+      - ./wwwroot:/var/www
+      - ./work/php54/logs:/var/log/php
+      - ./work/php54/config/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./work/php54/config/php.ini:/usr/local/etc/php/php.ini
+    container_name: php54
+    networks:
+      - service-net
   mysql80:
     build: ./mysql/8.0
     ports:
@@ -65,6 +77,20 @@ services:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_ALLOW_EMPTY_PASSWORD: "false"
     container_name: mysql80
+    networks:
+      - service-net
+  mysql56:
+    build: ./mysql/5.6
+    ports:
+      - "3356:3306"
+    restart: always
+    volumes:
+      - ./work/mysql56/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "false"
+    container_name: mysql56
     networks:
       - service-net
  
